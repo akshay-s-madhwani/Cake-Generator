@@ -17,6 +17,7 @@ const app = firebase.app();
 const container = document.querySelector('#container'); 
 const cake = document.querySelector('.saved-collection-wrap');
 const display = document.querySelector('.saved-collection-con');
+const cake_display = document.querySelector('.saved-display');
 
 const main_opt = document.querySelectorAll('.main-options');
 const viewbtn= document.querySelector('.view');
@@ -39,7 +40,7 @@ function designChanger(elem){
         elem.style.background = e.target.value;
       }
       else if(j ==6 && elem === top){
-        elem.classList.remove('strawberry','candle','choc-stick');
+        elem.classList.remove('cherry','candle','choc-stick');
         elem.classList.toggle('blink',false)
         option_val = e.target.value;
         elem.classList.add(option_val)
@@ -81,10 +82,11 @@ main_opt.forEach(function(i) {
     }
   }
 })
+let saved_cake_wrap = document.querySelector('.saved-cake-wrap');
 document.querySelector('.fa-arrow-right').onclick = () => 
   display.style.transform = 'translate(120%, 0)';
 document.querySelector('.save').onclick = () => {
-cake.innerHTML = container.innerHTML;
+saved_cake_wrap.innerHTML = container.innerHTML;
 console.log(cake.innerHTML);
 display.style.transform = 'translate(15%, 0)';
 }
@@ -97,7 +99,7 @@ function previewer(obj){
   let wishesContainer = document.createElement('div');
   let wishes = document.createElement('p');
 
-  container.className = 'saved-display viewable-display';
+  container.className = 'viewable-display';
   nameWrap.className = 'wisher';
   cakeContainer.className = 'saved-cake-wrap container';
   wishesContainer.className = 'wishes-con';
@@ -105,7 +107,7 @@ function previewer(obj){
 
   name.innerText = obj.name;
   cakeContainer.innerHTML = obj.cake;
-  wishes.innerText = obj.comments;
+  wishes.innerText = obj.comment;
   if(obj.background ){
     cakeContainer.style.background = obj.background;
   }
@@ -114,7 +116,7 @@ function previewer(obj){
   container.appendChild(nameWrap);
   container.appendChild(cakeContainer);
   container.appendChild(wishesContainer);
-  display.appendChild(container);
+  document.querySelector('.saved-collection-wrap').appendChild(container);
   console.log(container);
 return container;
 }
@@ -129,7 +131,7 @@ let colors;
                 let bcol = Math.floor(Math.random()*255);
                  colors = `rgb(${rcol},${gcol},${bcol})`;
                 console.log(colors);
-                cake.style.background = colors;
+                saved_cake_wrap.style.background = colors;
                 return colors;
               }
  const db = firebase.firestore();
@@ -161,7 +163,7 @@ db.collection('wishes').add(user)
   viewbtn.onclick = () =>
 {
   console.log(cake,display)
-  display.style.display = 'hidden';
+  cake_display.style.display = 'none';
   display.style.transform = 'translate(15%, 0)';
   getData();
 }
