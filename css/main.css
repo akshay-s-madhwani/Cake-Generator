@@ -56,18 +56,16 @@ hr {
   padding: 0;
 }
 body {
-  background-image: url("../img/22487.jpg");
   background-color: rgb(219, 236, 172);
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
   display: flex;
   justify-content: center;
   align-content: center;
 }
+
 button {
   width: 72px;
   height: 40px;
+  margin: 10px;
 }
 .saved-collection-con {
   width: 80vw;
@@ -139,6 +137,8 @@ button {
 .wisher {
   width: 80%;
   height: 20%;
+  max-height: 25%;
+  overflow-y: scroll;
   margin: 10% 10%;
   font-size: 24px;
   text-align: center;
@@ -170,7 +170,7 @@ textarea {
 .table {
   position: fixed;
   bottom: 0;
-  height: 45%;
+  height: calc(30vh + 25px);
   width: 120px;
 }
 .top {
@@ -209,12 +209,11 @@ textarea {
   justify-content: end;
   align-content: center;
   flex-flow: column wrap;
-  background-color: rgba(10, 20, 180, 0.6);
+  background-color: rgba(166, 172, 245, 0.5);
 }
 #cake-top {
   width: 10%;
   height: 10%;
-
   align-self: center;
 }
 #lvl_3 {
@@ -246,11 +245,7 @@ button {
   border: 2px solid rgba(51, 68, 255, 1);
   border-radius: 5px;
 }
-/* #ffb4b4 	(255,180,180)
-	#e1c693 	(225,198,147)
-	#8dd0b3 	(141,208,179)
-	#ae7373 	(174,115,115)
-	#e4d3ff */
+
 .type-wrap {
   position: fixed;
   bottom: 10px;
@@ -284,7 +279,7 @@ button {
 }
 .select-wrap:nth-child(2) {
   position: absolute;
-  right: 5px;
+  right: -5px;
 }
 .select {
   min-width: 60px;
@@ -491,6 +486,9 @@ button {
   border-top: 5px dashed #b3d4fc;
   border-block-start-style: ridge;
 }
+.hide {
+  display: none !important;
+}
 .viewable-display > .container > .candle::after {
   margin-top: 155px;
   position: relative;
@@ -534,7 +532,6 @@ button {
   border-bottom: 15px solid yellow;
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
-  transform: scaleX(4);
   animation: flame 1s linear infinite;
   transform-origin: bottom;
   -moz-animation: flame 3s linear infinite;
@@ -627,10 +624,7 @@ label {
   background: linear-gradient(45deg, #32000c, #3f000f);
   margin: 20% 30%;
 }
-.main-options > .select-base > .strawberry {
-  margin: 30%;
-  filter: drop-shadow(2px 0 10px #faa);
-}
+
 .blink {
   animation: blink 1s linear infinite;
 }

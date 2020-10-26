@@ -34,7 +34,6 @@ function designChanger(elem){
       let data = section[j].getAttribute('data-opt'); 
       if( j != 4 && j != 6 && j!=7){
         elem.className = data;
-        console.log(elem.classList)
       }
       else if(j == 4){
         elem.style.background = e.target.value;
@@ -45,15 +44,14 @@ function designChanger(elem){
         option_val = e.target.value;
         elem.classList.add(option_val)
       }
-      else if( j !==4 && e.target.value != null &&elem === top){
-        option_val = e.target.value;
-      }
-      if(option_val != null){ 
-        elem.classList.add(option_val);
+      else if( j !=4 ){
         elem.classList.toggle('blink',false)
       }
-      }
+      option_val = e.target.value;   
+      elem.classList.add(option_val);
+      console.log(e.target.value,j , option_val)
     }
+  }
   }
 let lvl1 = document.querySelector('#lvl_1');
 let lvl2 = document.querySelector('#lvl_2');
@@ -82,10 +80,14 @@ main_opt.forEach(function(i) {
     }
   }
 })
+
+
 let saved_cake_wrap = document.querySelector('.saved-cake-wrap');
 document.querySelector('.fa-arrow-right').onclick = () => 
   display.style.transform = 'translate(120%, 0)';
 document.querySelector('.save').onclick = () => {
+  
+  cake_display.style.display = 'flex';
 saved_cake_wrap.innerHTML = container.innerHTML;
 console.log(cake.innerHTML);
 display.style.transform = 'translate(15%, 0)';
@@ -162,7 +164,6 @@ db.collection('wishes').add(user)
   }
   viewbtn.onclick = () =>
 {
-  console.log(cake,display)
   cake_display.style.display = 'none';
   display.style.transform = 'translate(15%, 0)';
   getData();
