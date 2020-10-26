@@ -206,7 +206,7 @@ textarea {
   width: 120px;
   height: 150px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-content: center;
   flex-flow: column wrap;
   background-color: rgba(166, 172, 245, 0.5);
