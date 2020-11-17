@@ -1,5 +1,7 @@
+alert("Happy Birthday Tanya 🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎊🎉🎊🎉🎊🎉🎉🎊💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐");
+alert("***Instructions***\n\n1. Select One of  the 3 Layer You want to modify \n\n 2.Select the flavour or shape for that Layer, And click again on the option After Selecting it\n\n 3.Click save to save your design and Wish her \n4. Click on View to View others wishes and designs\n Enjoy!!!");
 window.onload = () => {
-// let lvl1 , lvl2 , lvl3 , cake_top , section , main_opt , sqr_round , circle , glazed , kitkat , same_size , default;
+
 var firebaseConfig = {
   apiKey: "AIzaSyBmKWrOJoQHM2LLii9GoREwJd6f9AueMSk",
   authDomain: "musicplayer-d52c0.firebaseapp.com",
@@ -13,7 +15,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const app = firebase.app();
-
+document.querySelector("#help").onclick = ()=> alert("***Its A cake generator Where You can create a Cake of your choice with the given shapes and flavours For Tanya, \nSo Go Ahead \nBe Creative!!!\n***Instructions***\n\n1. Select One of  the 3 Layer You want to modify \n\n 2.Select the flavour or shape for that Layer, And click again on the option After Selecting it\n\n 3.Click save to save your design and Wish her \n4. Click on View to View others wishes and designs\n Enjoy!!!");
 const container = document.querySelector('#container'); 
 const cake = document.querySelector('.saved-collection-wrap');
 const display = document.querySelector('.saved-collection-con');
@@ -22,46 +24,49 @@ const cake_display = document.querySelector('.saved-display');
 const main_opt = document.querySelectorAll('.main-options');
 const viewbtn= document.querySelector('.view');
 const section = document.querySelectorAll('.select-base');
-console.log(section);
 
-function designChanger(elem){
-  let option_val;
-  if(elem !== top ){
-    elem.classList.add('blink');
-  }
-  for(let j in section){
-    section[j].onclick = (e) => {
-      let data = section[j].getAttribute('data-opt'); 
-      if( j != 4 && j != 6 && j!=7){
-        elem.className = data;
-        console.log(elem.classList)
-      }
-      else if(j == 4){
-        elem.style.background = e.target.value;
-      }
-      else if(j ==6 && elem === top){
-        elem.classList.remove('cherry','candle','choc-stick');
-        elem.classList.toggle('blink',false)
-        option_val = e.target.value;
-        elem.classList.add(option_val)
-      }
-      else if( j !==4 && e.target.value != null &&elem === top){
-        option_val = e.target.value;
-      }
-      if(option_val != null){ 
-        elem.classList.add(option_val);
-        elem.classList.toggle('blink',false)
-      }
-      }
-    }
-  }
 let lvl1 = document.querySelector('#lvl_1');
 let lvl2 = document.querySelector('#lvl_2');
 let lvl3 = document.querySelector('#lvl_3');
 let top = document.querySelector('#cake-top');
+
+function designChanger(elem){
+  let option_val;
+  elem != top ?
+    elem.classList.add('blink'):elem.classList.remove('blink');
+  
+  
+  for(let j in section){
+    section[j].onclick= (e) => {
+
+      let data = section[j].getAttribute('data-opt'); 
+      if( j != 4 && j != 6 && j!=7){
+        elem.className = data;
+      }
+      else if(j == 4){
+        elem.style.background = e.target.value;
+      }
+      option_val = e.target.value;
+        elem.classList.add(option_val);
+         elem.classList.remove('cherry','candle','choc-stick')
+         
+      if(j === 6 || elem === document.querySelector('#cake-top') || j===document.querySelectorAll('.select-base')[6]){
+        elem.classList.remove('cherry')
+        elem.classList.remove('candle')
+        elem.classList.remove('choc-stick');
+        elem.classList.toggle('blink',false)
+        option_val = e.target.value;
+        elem.classList.add(option_val)
+        
+      }
+     
+      }
+        }
+  }
+
 let activePiece;
 main_opt.forEach(function(i) {
-  i.onclick = () => {
+  i.onclick = () =>{
     switch(i){
       case document.querySelectorAll('.main-options')[0]:
         activePiece = lvl1;
@@ -77,7 +82,7 @@ main_opt.forEach(function(i) {
         break;
       case document.querySelectorAll('.main-options')[3]:
         activePiece = top;
-        designChanger(activePiece);
+        designChanger(document.querySelector('#cake-top'));
         break;
     }
   }
@@ -86,8 +91,8 @@ let saved_cake_wrap = document.querySelector('.saved-cake-wrap');
 document.querySelector('.fa-arrow-right').onclick = () => 
   display.style.transform = 'translate(120%, 0)';
 document.querySelector('.save').onclick = () => {
+cake_display.style.display = 'flex';
 saved_cake_wrap.innerHTML = container.innerHTML;
-console.log(cake.innerHTML);
 display.style.transform = 'translate(15%, 0)';
 }
 function previewer(obj){
@@ -117,55 +122,58 @@ function previewer(obj){
   container.appendChild(cakeContainer);
   container.appendChild(wishesContainer);
   document.querySelector('.saved-collection-wrap').appendChild(container);
-  console.log(container);
+  
 return container;
 }
 const save = document.querySelector('.upload');
 const save_bg = document.querySelector('.bg-img');
-const name = document.querySelector('.name').value;
+const name = document.querySelector('.name');
 const wish = document.querySelector('.wishes-con');
-let colors;
+let colors = 'rgb(25,25,25)';
               save_bg.onclick = () => {
                 let rcol = Math.floor(Math.random()*255);
                 let gcol = Math.floor(Math.random()*255);
                 let bcol = Math.floor(Math.random()*255);
                  colors = `rgb(${rcol},${gcol},${bcol})`;
-                console.log(colors);
+                 
+                
                 saved_cake_wrap.style.background = colors;
                 return colors;
               }
+              
  const db = firebase.firestore();
   save.onclick = () => {
-    const user = new Object();
-    if(name === null || name === undefined){
-      return alert("Name Field is required");
-    }
-    user.name = name;
+  if(name.value == null || name.value == undefined ||name.value ===''){
+      alert("Your Name is required!!")
+  }
+  else{
+  alert("Please Wait!!")
+    const user = {};
+    
+    user.name = name.value;
     user.cake = container.innerHTML;
     user.comment = wish.value;
     user.background = colors;
-    console.log(user);
-db.collection('wishes').add(user)
-.then(docRef => {console.log("New Wish Id", docRef.id)})
+   db.collection('tanyaWishes').add(user)
+.then(docRef => {alert(`${name.value}\'s Wish Saved \n`)})
+
 .catch(err => {console.log("Error:",err)});
-    
+    }
   }
-  function getData(){
-    db.collection('wishes').get()
+  
+  viewbtn.onclick = () =>
+{
+  
+  cake_display.style.display = 'none';
+  display.style.transform = 'translate(15%, 0)';
+    db.collection('tanyaWishes').get()
     .then((querySnapshot) => {
-       querySnapshot.forEach((data) => {
-      previewer(data.data());
-      console.log(data.data());
+       querySnapshot.forEach((doc) => {
+      previewer(doc.data());
     })
   })
   .catch( err => {console.log(err)})
-  }
-  viewbtn.onclick = () =>
-{
-  console.log(cake,display)
-  cake_display.style.display = 'none';
-  display.style.transform = 'translate(15%, 0)';
-  getData();
+  
 }
 }
 
