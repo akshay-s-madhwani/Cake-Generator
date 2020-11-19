@@ -1,7 +1,9 @@
-alert("Happy Birthday Tanya 🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎊🎉🎊🎉🎊🎉🎉🎊💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐");
+
+alert("Happy Birthday Rishabh 🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊🎊🎉🎊🎉🎊🎉🎉🎊💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐💐");
 alert("***Instructions***\n\n1. Select One of  the 3 Layer You want to modify \n\n 2.Select the flavour or shape for that Layer, And click again on the option After Selecting it\n\n 3.Click save to save your design and Wish her \n4. Click on View to View others wishes and designs\n Enjoy!!!");
 window.onload = () => {
-
+/*const app = firebase.app();
+console.log(app)
 var firebaseConfig = {
   apiKey: "AIzaSyBmKWrOJoQHM2LLii9GoREwJd6f9AueMSk",
   authDomain: "musicplayer-d52c0.firebaseapp.com",
@@ -14,8 +16,9 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const app = firebase.app();
-document.querySelector("#help").onclick = ()=> alert("***Its A cake generator Where You can create a Cake of your choice with the given shapes and flavours For Tanya, \nSo Go Ahead \nBe Creative!!!\n***Instructions***\n\n1. Select One of  the 3 Layer You want to modify \n\n 2.Select the flavour or shape for that Layer, And click again on the option After Selecting it\n\n 3.Click save to save your design and Wish her \n4. Click on View to View others wishes and designs\n Enjoy!!!");
+*/
+const app =firebase.app();
+document.querySelector("#help").onclick = ()=> alert("***Its A cake generator Where You can create a Cake of your choice with the given shapes and flavours For Rishabh, \nSo Go Ahead \nBe Creative!!!\n***Instructions***\n\n1. Select One of  the 3 Layer You want to modify \n\n 2.Select the flavour or shape for that Layer, And click again on the option After Selecting it\n\n 3.Click save to save your design and Wish him \n4. Click on View to View others wishes and designs\n Enjoy!!!");
 const container = document.querySelector('#container'); 
 const cake = document.querySelector('.saved-collection-wrap');
 const display = document.querySelector('.saved-collection-con');
@@ -154,7 +157,7 @@ let colors = 'rgb(25,25,25)';
     user.cake = container.innerHTML;
     user.comment = wish.value;
     user.background = colors;
-   db.collection('tanyaWishes').add(user)
+   db.collection('RishabhWishes').add(user)
 .then(docRef => {alert(`${name.value}\'s Wish Saved \n`)})
 
 .catch(err => {console.log("Error:",err)});
@@ -166,7 +169,7 @@ let colors = 'rgb(25,25,25)';
   
   cake_display.style.display = 'none';
   display.style.transform = 'translate(15%, 0)';
-    db.collection('tanyaWishes').get()
+    db.collection('RishabhWishes').get()
     .then((querySnapshot) => {
        querySnapshot.forEach((doc) => {
       previewer(doc.data());
